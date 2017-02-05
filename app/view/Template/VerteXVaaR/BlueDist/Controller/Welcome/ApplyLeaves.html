@@ -1,0 +1,22 @@
+<f:layout name="Html"/>
+
+<f:section name="Content">
+	<section>
+		<h2>Put some Leaves on {tree.genus}s branches!</h2>
+		<f:for each="{tree.branches}" as="branch" iteration="i">
+			<p>
+				Branch #{i.index} with length: {branch.length}
+				<br/>
+				<f:for each="{branch.leaves}" as="leaf">
+					Leaf #{leaf.number},
+				</f:for>
+			</p>
+
+			<form action="addLeaf" method="post">
+				<input type="hidden" value="{tree.uuid}" name="tree">
+				<input type="hidden" value="{i.index}" name="branch">
+				<input type="submit" value="Add a leaf">
+			</form>
+		</f:for>
+	</section>
+</f:section>

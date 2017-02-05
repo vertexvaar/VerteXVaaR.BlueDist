@@ -1,0 +1,21 @@
+<f:layout name="Html"/>
+
+<f:section name="Content">
+	<section>
+
+		<h2>Grow some branches on {tree.genus}!</h2>
+
+		<form action="growBranches" method="post">
+			<input type="hidden" value="{tree.uuid}" name="tree">
+			<f:for each="{branches}" as="branch">
+				<p>
+					<label>
+						Branch {branch} length
+						<input type="text" name="branches[{branch}][length]">
+					</label>
+				</p>
+			</f:for>
+			<input type="submit" value="Grow branches">
+		</form>
+	</section>
+</f:section>

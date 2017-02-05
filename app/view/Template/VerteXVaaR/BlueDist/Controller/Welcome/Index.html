@@ -1,0 +1,55 @@
+<f:layout name="Html"/>
+
+<f:section name="Content">
+	<section>
+
+		<h1>Welcome to VerteXVaaR.BlueSprints</h1>
+
+		<h2>An experiment gone right :D</h2>
+
+		<p>
+			VerteXVaaR.BlueSprints was created in a few hours as an experiment of "what could be done in 3 hours"
+			and it's development continued for 6 other hours. After 9 hours it had (all simple) routing, templating,
+			of course autoloading (thanks composer) and NoDB persistence, all out of the box. But more is to come.
+		</p>
+
+		<h2>It will stay simple!</h2>
+
+		<p>
+			This PHP Framework is designed to stay as simple as possible but yet provide some indispensable features.
+			So there is no Database connection or Dependency Injection and it's not about to come. If you are searching
+			for
+			a framework capable of that, you have to search for another.
+		</p>
+
+		<h2>Fast framework, fast Development</h2>
+
+		<p>
+			Because there are almost no classes inside of VerteXVaaR.BlueSprints and it has no reflection or abstraction
+			it is simply fast by design, without any caching.
+			This (nearly) slender design is good for performance, but it prevents some features. But if you want to
+			develop
+			a simple Application that stores a few models or just prints out content you will be convinced by your own
+			development speed
+		</p>
+
+		<h2>Templating</h2>
+
+		<p>
+			Templating might be something you have to get used to, because it uses pure PHP. There is nothing fancy like
+			twig, handlebars.js or TYPO3.Fluid. Just some PHP that is executed right away. Not even cached.
+			Here is some data set by the controller. Only for your pleasure ;)
+		</p>
+		<ul>
+			<f:for each="{strings}" as="string">
+				<li>{string}</li>
+			</f:for>
+		</ul>
+
+		<h2>Persistence?</h2>
+
+		<p>
+			Want a demo about Persistence? Just <a href="listFruits">follow me</a> ;)
+		</p>
+	</section>
+</f:section>

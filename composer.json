@@ -1,0 +1,15 @@
+{
+	"name": "Vertexvaar/bluedist",
+	"description": "Demo & Tutorial package for the BlueSprints framework",
+	"type": "project",
+	"license": "GPL-3.0",
+	"require": {
+		"vertexvaar/bluesprints": "dev-master",
+		"vertexvaar/bluefluid": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"VerteXVaaR\\BlueDist\\": "app/classes"
+		}
+	}
+}
