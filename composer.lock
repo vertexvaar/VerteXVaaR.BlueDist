@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "24fd6e107876bc2b7027d5e2d441a9e1",
+    "content-hash": "a24a2d8decdf1fc8c7c0bf278529b665",
     "packages": [
         {
             "name": "typo3fluid/fluid",
@@ -51,16 +51,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vertexvaar/VerteXVaaR.BlueFluid.git",
-                "reference": "8fe12c275468ea69b08ee148a16cb557abe18e74"
+                "reference": "7301157625fe86c3ce097b467ab2390354be5bee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vertexvaar/VerteXVaaR.BlueFluid/zipball/8fe12c275468ea69b08ee148a16cb557abe18e74",
-                "reference": "8fe12c275468ea69b08ee148a16cb557abe18e74",
+                "url": "https://api.github.com/repos/vertexvaar/VerteXVaaR.BlueFluid/zipball/7301157625fe86c3ce097b467ab2390354be5bee",
+                "reference": "7301157625fe86c3ce097b467ab2390354be5bee",
                 "shasum": ""
             },
             "require": {
-                "typo3fluid/fluid": "^2.2"
+                "php": "^7.0",
+                "typo3fluid/fluid": "^2.2",
+                "vertexvaar/bluesprints": "dev-master"
             },
             "type": "project",
             "autoload": {
@@ -81,48 +83,7 @@
                 }
             ],
             "description": "BlueFluids provides an adapter for the TYPO3 templating engine Fluid",
-            "time": "2017-02-04 00:49:21"
-        },
-        {
-            "name": "vertexvaar/blueinstaller",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vertexvaar/VerteXVaaR.BlueInstaller.git",
-                "reference": "656c273d0960ae8ab48f056767db83ea29a5575b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vertexvaar/VerteXVaaR.BlueInstaller/zipball/656c273d0960ae8ab48f056767db83ea29a5575b",
-                "reference": "656c273d0960ae8ab48f056767db83ea29a5575b",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "VerteXVaaR\\BlueInstaller\\Activator"
-            },
-            "autoload": {
-                "psr-4": {
-                    "VerteXVaaR\\BlueInstaller\\": "classes/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Eglseder",
-                    "email": "bluesprints@vxvr.de",
-                    "homepage": "http://vxvr.de/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Installer Package for VertXVaaR.BlueSprints",
-            "time": "2017-02-03T16:26:02+00:00"
+            "time": "2017-02-05 21:35:07"
         },
         {
             "name": "vertexvaar/bluesprints",
@@ -130,17 +91,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vertexvaar/VerteXVaaR.BlueSprints.git",
-                "reference": "6480d987a6efca8ed15f8e57b99e777280768bb5"
+                "reference": "dc3a1656e35cdb64433f43104ca5ebe437b14262"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vertexvaar/VerteXVaaR.BlueSprints/zipball/6480d987a6efca8ed15f8e57b99e777280768bb5",
-                "reference": "6480d987a6efca8ed15f8e57b99e777280768bb5",
+                "url": "https://api.github.com/repos/vertexvaar/VerteXVaaR.BlueSprints/zipball/dc3a1656e35cdb64433f43104ca5ebe437b14262",
+                "reference": "dc3a1656e35cdb64433f43104ca5ebe437b14262",
                 "shasum": ""
             },
             "require": {
-                "vertexvaar/blueinstaller": "^1.0.3"
+                "php": "^7.0"
             },
+            "bin": [
+                "bin/bluesprints"
+            ],
             "type": "project",
             "autoload": {
                 "psr-4": {
@@ -160,7 +124,7 @@
                 }
             ],
             "description": "BlueSprints is a small experimental PHP Project which evolved to a framework",
-            "time": "2017-02-03 16:28:16"
+            "time": "2017-02-10 19:41:23"
         }
     ],
     "packages-dev": [],
@@ -172,6 +136,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.0"
+    },
     "platform-dev": []
 }
