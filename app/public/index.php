@@ -1,7 +1,6 @@
 <?php
 
 define('VXVR_BS_ROOT', dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR);
-
 require_once(VXVR_BS_ROOT . 'vendor/autoload.php');
 
 if (empty(ini_get('date.timezone'))) {
