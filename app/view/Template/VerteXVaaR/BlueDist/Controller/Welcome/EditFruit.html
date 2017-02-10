@@ -1,11 +1,11 @@
-<f:layout name="Html"/>
+<f:layout name="Html" />
 
 <f:section name="Content">
 	<section>
 		<h1>Change a {fruit.name}</h1>
 
 		<p>
-			Objects are target to many modifications, so updating a already persistend object is essential.<br/>
+			Objects are target to many modifications, so updating a already persistend object is essential.<br />
 			Change the name or color of your selected fruit and save it, or go <a href="listFruits">back</a> to the
 			list.
 		</p>
@@ -16,21 +16,21 @@
 			<p>
 				<label>
 					Name
-					<input type="text" name="name" value="{fruit.name}"/>
+					<input type="text" name="name" value="{fruit.name}" />
 				</label>
 			</p>
 
 			<p>
 				<label>
 					Color
-					<input type="text" name="color" value="{fruit.color}"/>
+					<input type="text" name="color" value="{fruit.color}" />
 				</label>
 			</p>
 			<input type="submit" value="Update it!">
 		</form>
 
 		<form action="deleteFruit" method="post">
-			<input type="hidden" name="fruit" value="{fruit.uuid}"/>
+			<input type="hidden" name="fruit" value="{fruit.uuid}" />
 			<input type="submit" value="Or delete it :)">
 		</form>
 

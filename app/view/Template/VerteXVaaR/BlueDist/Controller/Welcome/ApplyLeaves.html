@@ -1,4 +1,4 @@
-<f:layout name="Html"/>
+<f:layout name="Html" />
 
 <f:section name="Content">
 	<section>
@@ -6,7 +6,7 @@
 		<f:for each="{tree.branches}" as="branch" iteration="i">
 			<p>
 				Branch #{i.index} with length: {branch.length}
-				<br/>
+				<br />
 				<f:for each="{branch.leaves}" as="leaf">
 					Leaf #{leaf.number},
 				</f:for>
