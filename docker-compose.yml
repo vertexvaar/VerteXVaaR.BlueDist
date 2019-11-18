@@ -1,0 +1,68 @@
+version: "3.7"
+
+services:
+  httpd:
+    image: in2code/httpd:2.4-alpine
+    environment:
+      WEB_DOCUMENT_ROOT: /app/${WEBROOT}/
+      VIRTUAL_HOST: ${HOST}
+      VIRTUAL_PORT: 443
+      VIRTUAL_PROTO: https
+    volumes:
+      - ./:/app/:cached
+    networks:
+      default:
+        aliases:
+          - ${HOST}
+
+  php:
+    build:
+      context: ./.project/docker/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app/:cached
+      - $HOME/.composer/auth.json:/tmp/composer/auth.json
+      - $HOME/.composer/cache/:/tmp/composer/cache/
+    env_file:
+      - .env
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
+      BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
+
+  mysql:
+    image: in2code/mysql:8.0
+    env_file:
+      - .env
+    volumes:
+      - mysql:/var/lib/mysql/
+      - ${SQLDUMPSDIR}:/${SQLDUMPSDIR}
+    ports:
+      - ${SQLPORT}:3306
+
+  mail:
+    image: mailhog/mailhog
+    environment:
+      VIRTUAL_PORT: 8025
+
+  selenium-hub:
+    image: selenium/hub:3.141.59-titanium
+    ports:
+      - ${SELENIUMPORT}:${SELENIUMPORT}
+
+  chrome:
+    image: selenium/node-chrome-debug:3.141.59-titanium
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=${SELENIUMPORT}
+    ports:
+      - ${CHROMEPORT}:5900
+
+volumes:
+  mysql:
