@@ -73,10 +73,11 @@ class Welcome extends AbstractController
      */
     protected function createFruit()
     {
-        if ($this->request->hasArgument('name') && $this->request->hasArgument('color')) {
+        $arguments = $this->request->getParsedBody();
+        if (isset($arguments['name'], $arguments['color'])) {
             $fruit = new Fruit();
-            $fruit->setColor($this->request->getArgument('color'));
-            $fruit->setName($this->request->getArgument('name'));
+            $fruit->setColor($arguments['color']);
+            $fruit->setName($arguments['name']);
             $fruit->save();
         }
         $this->redirect('listFruits');
@@ -87,7 +88,7 @@ class Welcome extends AbstractController
      */
     protected function editFruit()
     {
-        $fruit = Fruit::findByUuid($this->request->getArgument('fruit'));
+        $fruit = Fruit::findByUuid($this->request->getQueryParams()['fruit']);
         $this->templateRenderer->setVariable('fruit', $fruit);
     }
 
@@ -96,10 +97,13 @@ class Welcome extends AbstractController
      */
     protected function updateFruit()
     {
-        $fruit = Fruit::findByUuid($this->request->getArgument('uuid'));
-        $fruit->setName($this->request->getArgument('name'));
-        $fruit->setColor($this->request->getArgument('color'));
-        $fruit->save();
+        $arguments = $this->request->getParsedBody();
+        if (isset($arguments['uuid'], $arguments['name'], $arguments['color'])) {
+            $fruit = Fruit::findByUuid($arguments['uuid']);
+            $fruit->setName($arguments['name']);
+            $fruit->setColor($arguments['color']);
+            $fruit->save();
+        }
         $this->redirect('listFruits');
     }
 
@@ -108,11 +112,12 @@ class Welcome extends AbstractController
      */
     protected function createTree()
     {
+        $arguments = $this->request->getParsedBody();
         $tree = new Tree();
-        $tree->setGenus($this->request->getArgument('genus'));
+        $tree->setGenus($arguments['genus']);
         $tree->save();
         $this->templateRenderer->setVariable('tree', $tree);
-        $this->templateRenderer->setVariable('branches', range(1, $this->request->getArgument('numberOfBranches')));
+        $this->templateRenderer->setVariable('branches', range(1, $arguments['numberOfBranches']));
     }
 
     /**
@@ -127,9 +132,10 @@ class Welcome extends AbstractController
      */
     protected function growBranches()
     {
-        $tree = Tree::findByUuid($this->request->getArgument('tree'));
+        $arguments = $this->request->getParsedBody();
+        $tree = Tree::findByUuid($arguments['tree']);
         $branches = [];
-        foreach ($this->request->getArgument('branches') as $data) {
+        foreach ($arguments['branches'] as $data) {
             $branch = new Branch();
             $branch->setLength((int)$data['length']);
             $branches[] = $branch;
@@ -144,9 +150,10 @@ class Welcome extends AbstractController
      */
     protected function applyLeaves()
     {
+        $arguments = $this->request->getQueryParams();
         $this->templateRenderer->setVariable(
             'tree',
-            Tree::findByUuid($this->request->getArgument('tree'))
+            Tree::findByUuid($arguments['tree'])
         );
     }
 
@@ -155,8 +162,9 @@ class Welcome extends AbstractController
      */
     protected function addLeaf()
     {
-        $tree = Tree::findByUuid($this->request->getArgument('tree'));
-        $branch = $tree->getBranches()[$this->request->getArgument('branch')];
+        $arguments = $this->request->getParsedBody();
+        $tree = Tree::findByUuid($arguments['tree']);
+        $branch = $tree->getBranches()[$arguments['branch']];
         $leaves = $branch->getLeaves();
         $leaves[] = new Leaf(count($leaves) + 1);
         $branch->setLeaves($leaves);
@@ -169,7 +177,7 @@ class Welcome extends AbstractController
      */
     protected function deleteFruit()
     {
-        $fruit = Fruit::findByUuid($this->request->getArgument('fruit'));
+        $fruit = Fruit::findByUuid($this->request->getParsedBody()['fruit']);
         $fruit->delete();
         $this->redirect('listFruits');
     }

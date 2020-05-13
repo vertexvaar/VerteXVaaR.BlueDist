@@ -86,11 +86,15 @@
 		</p>
 
 		<pre>
-            $fruit = new Fruit();
-            $fruit->setColor($this->request->getArgument('color'));
-            $fruit->setName($this->request->getArgument('name'));
-            $fruit->save();
-    </pre>
+			$arguments = $this->request->getParsedBody();
+			if (isset($arguments['name'], $arguments['color'])) {
+				$fruit = new Fruit();
+				$fruit->setColor($arguments['color']);
+				$fruit->setName($arguments['name']);
+				$fruit->save();
+			}
+			$this->redirect('listFruits');
+		</pre>
 
 		<p>
 			As i promised you, it is easy as pie. If you want to alter the Model, say add a new property, just do it.

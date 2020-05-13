@@ -1,10 +1,10 @@
 <?php
 use VerteXVaaR\BlueDist\Controller\Welcome;
-use VerteXVaaR\BlueSprints\Http\Request;
+use VerteXVaaR\BlueSprints\Http\Server\Middleware\RoutingMiddleware;
 
 return [
     // safe methods
-    Request::HTTP_METHOD_GET => [
+    RoutingMiddleware::HTTP_METHOD_GET => [
         '/applyLeaves' => [
             'controller' => Welcome::class,
             'action' => 'applyLeaves',
@@ -30,9 +30,9 @@ return [
             'action' => 'index',
         ],
     ],
-    Request::HTTP_METHOD_HEAD => [],
+    RoutingMiddleware::HTTP_METHOD_HEAD => [],
     // not safe methods
-    Request::HTTP_METHOD_POST => [
+    RoutingMiddleware::HTTP_METHOD_POST => [
         '/createDemoFruits' => [
             'controller' => Welcome::class,
             'action' => 'createDemoFruits',
@@ -62,6 +62,6 @@ return [
             'action' => 'createFruit',
         ],
     ],
-    Request::HTTP_METHOD_PUT => [],
-    Request::HTTP_METHOD_DELETE => [],
+    RoutingMiddleware::HTTP_METHOD_PUT => [],
+    RoutingMiddleware::HTTP_METHOD_DELETE => [],
 ];
